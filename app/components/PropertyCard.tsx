@@ -1,6 +1,6 @@
-import { MapPin, Bed, Bath, Square, Heart } from 'lucide-react';
-import { Property } from '../types';
-import { useAuth } from '../context/AuthContext';
+import { MapPin, Bed, Bath, Square, Heart } from "lucide-react";
+import { Property } from "../types";
+import { useAuth } from "../context/AuthContext";
 
 interface PropertyCardProps {
   property: Property;
@@ -13,12 +13,12 @@ export const PropertyCard = ({
   property,
   onViewDetails,
   isFavorite = false,
-  onToggleFavorite
+  onToggleFavorite,
 }: PropertyCardProps) => {
   const { user } = useAuth();
 
   const formatPrice = (price: number) => {
-    if (property.status === 'rent') {
+    if (property.status === "rent") {
       return `$${price.toLocaleString()}/mo`;
     }
     return `$${price.toLocaleString()}`;
@@ -40,7 +40,7 @@ export const PropertyCard = ({
             {property.type}
           </span>
         </div>
-        {user?.role === 'buyer' && onToggleFavorite && (
+        {user?.role === "buyer" && onToggleFavorite && (
           <button
             onClick={(e) => {
               e.stopPropagation();
@@ -50,7 +50,7 @@ export const PropertyCard = ({
           >
             <Heart
               className={`w-5 h-5 ${
-                isFavorite ? 'fill-red-500 text-red-500' : 'text-gray-600'
+                isFavorite ? "fill-red-500 text-red-500" : "text-gray-600"
               }`}
             />
           </button>
@@ -86,19 +86,21 @@ export const PropertyCard = ({
           )}
           <div className="flex items-center">
             <Square className="w-4 h-4 mr-1" />
-            <span className="text-sm">{property.area.toLocaleString()} sqft</span>
+            <span className="text-sm">
+              {property.area.toLocaleString()} sqft
+            </span>
           </div>
         </div>
 
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-3xl font-bold text-blue-600">
+            <p className="lg:text-2xl text-[13px] font-bold text-blue-600">
               {formatPrice(property.price)}
             </p>
           </div>
           <button
             onClick={() => onViewDetails(property)}
-            className="px-6 py-2 bg-gray-900 text-white rounded-lg font-medium hover:bg-gray-800 transition-colors"
+            className="px-6 py-2 bg-gray-900 text-white rounded-lg font-medium lg:text-base text-[10px]  hover:bg-gray-800 transition-colors"
           >
             View Details
           </button>

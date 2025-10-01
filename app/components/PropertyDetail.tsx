@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 import {
   X,
   MapPin,
@@ -9,10 +9,10 @@ import {
   Mail,
   ChevronLeft,
   ChevronRight,
-  Heart
-} from 'lucide-react';
-import { Property } from '../types';
-import { useAuth } from '../context/AuthContext';
+  Heart,
+} from "lucide-react";
+import { Property } from "../types";
+import { useAuth } from "../context/AuthContext";
 
 interface PropertyDetailProps {
   property: Property;
@@ -25,7 +25,7 @@ export const PropertyDetail = ({
   property,
   onClose,
   isFavorite = false,
-  onToggleFavorite
+  onToggleFavorite,
 }: PropertyDetailProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const { user } = useAuth();
@@ -43,7 +43,7 @@ export const PropertyDetail = ({
   };
 
   const formatPrice = (price: number) => {
-    if (property.status === 'rent') {
+    if (property.status === "rent") {
       return `$${price.toLocaleString()}/month`;
     }
     return `$${price.toLocaleString()}`;
@@ -89,8 +89,8 @@ export const PropertyDetail = ({
                       onClick={() => setCurrentImageIndex(index)}
                       className={`w-2 h-2 rounded-full transition-all ${
                         index === currentImageIndex
-                          ? 'bg-white w-8'
-                          : 'bg-white bg-opacity-50'
+                          ? "bg-white w-8"
+                          : "bg-white bg-opacity-50"
                       }`}
                     />
                   ))}
@@ -107,21 +107,21 @@ export const PropertyDetail = ({
               </span>
             </div>
 
-            {user?.role === 'buyer' && onToggleFavorite && (
+            {user?.role === "buyer" && onToggleFavorite && (
               <button
                 onClick={() => onToggleFavorite(property.id)}
                 className="absolute top-4 right-16 p-2 bg-white rounded-full shadow-lg hover:bg-red-50 transition-colors"
               >
                 <Heart
                   className={`w-5 h-5 ${
-                    isFavorite ? 'fill-red-500 text-red-500' : 'text-gray-600'
+                    isFavorite ? "fill-red-500 text-red-500" : "text-gray-600"
                   }`}
                 />
               </button>
             )}
           </div>
 
-          <div className="p-8">
+          <div className="lg:p-8 p-2">
             <div className="mb-6">
               <h1 className="text-4xl font-bold text-gray-900 mb-3">
                 {property.title}
@@ -130,7 +130,7 @@ export const PropertyDetail = ({
                 <MapPin className="w-5 h-5 mr-2" />
                 <span className="text-lg">{property.location}</span>
               </div>
-              <p className="text-5xl font-bold text-blue-600">
+              <p className="lg:text-5xl text-[13px] font-bold text-blue-600">
                 {formatPrice(property.price)}
               </p>
             </div>
@@ -139,7 +139,7 @@ export const PropertyDetail = ({
               {property.bedrooms && (
                 <div className="text-center p-4 bg-gray-50 rounded-lg">
                   <Bed className="w-8 h-8 mx-auto mb-2 text-gray-700" />
-                  <p className="text-2xl font-bold text-gray-900">
+                  <p className="lg:text-2xl text-[12px] font-bold text-gray-900">
                     {property.bedrooms}
                   </p>
                   <p className="text-sm text-gray-600">Bedrooms</p>
@@ -148,7 +148,7 @@ export const PropertyDetail = ({
               {property.bathrooms && (
                 <div className="text-center p-4 bg-gray-50 rounded-lg">
                   <Bath className="w-8 h-8 mx-auto mb-2 text-gray-700" />
-                  <p className="text-2xl font-bold text-gray-900">
+                  <p className="lg:text-2xl text-[12px] font-bold text-gray-900">
                     {property.bathrooms}
                   </p>
                   <p className="text-sm text-gray-600">Bathrooms</p>
@@ -156,7 +156,7 @@ export const PropertyDetail = ({
               )}
               <div className="text-center p-4 bg-gray-50 rounded-lg">
                 <Square className="w-8 h-8 mx-auto mb-2 text-gray-700" />
-                <p className="text-2xl font-bold text-gray-900">
+                <p className="lg:text-2xl text-[12px] font-bold text-gray-900">
                   {property.area.toLocaleString()}
                 </p>
                 <p className="text-sm text-gray-600">Square Feet</p>
@@ -177,12 +177,14 @@ export const PropertyDetail = ({
                 Contact Agent
               </h2>
               <div className="space-y-3">
-                <div className="flex items-center text-gray-700">
+                <div className="flex lg:flex-row flex-col items-center text-gray-700">
                   <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">
                     {property.agentName.charAt(0)}
                   </div>
                   <div>
-                    <p className="font-semibold text-lg">{property.agentName}</p>
+                    <p className="font-semibold text-lg">
+                      {property.agentName}
+                    </p>
                     <p className="text-sm text-gray-600">Real Estate Agent</p>
                   </div>
                 </div>
@@ -193,7 +195,8 @@ export const PropertyDetail = ({
                 <div className="flex items-center text-gray-700 pl-16">
                   <Mail className="w-5 h-5 mr-3" />
                   <span>
-                    {property.agentName.toLowerCase().replace(' ', '.')}@realestatehub.com
+                    {property.agentName.toLowerCase().replace(" ", ".")}
+                    @realestatehub.com
                   </span>
                 </div>
               </div>
