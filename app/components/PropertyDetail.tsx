@@ -177,7 +177,7 @@ export const PropertyDetail = ({
                 Contact Agent
               </h2>
               <div className="space-y-3">
-                <div className="flex lg:flex-row flex-col items-center text-gray-700">
+                <div className="flex lg:flex-row flex-col lg:items-center items-start text-gray-700">
                   <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">
                     {property.agentName.charAt(0)}
                   </div>
@@ -188,11 +188,11 @@ export const PropertyDetail = ({
                     <p className="text-sm text-gray-600">Real Estate Agent</p>
                   </div>
                 </div>
-                <div className="flex items-center text-gray-700 pl-16">
+                <div className="flex lg:items-center items-start text-gray-700 ">
                   <Phone className="w-5 h-5 mr-3" />
                   <span>{property.agentContact}</span>
                 </div>
-                <div className="flex items-center text-gray-700 pl-16">
+                <div className="flex items-center text-gray-700 ">
                   <Mail className="w-5 h-5 mr-3" />
                   <span>
                     {property.agentName.toLowerCase().replace(" ", ".")}
